@@ -37,8 +37,8 @@ int		get_next_line(int fd, char **line)
 	return (0);
 }
 
-/* this fuction won't pass the NORM as it has 27 lines, but it makes more sense to me */
-/* splitting into 2 funcs just to pass the NORM was the only way around it */
+/* 'get_extra' fuction won't pass the NORM as it has 27 lines, but it makes more sense to me */
+/* splitting into 2 funcs just to pass the NORM is the easy way around */
 
 char	*get_extra(int fd, t_lst **head)
 {
