@@ -6,7 +6,7 @@
 /*   By: iiliuk <iiliuk@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 15:57:49 by iiliuk            #+#    #+#             */
-/*   Updated: 2016/12/01 19:59:20 by iiliuk           ###   ########.fr       */
+/*   Updated: 2016/12/06 11:30:16 by iiliuk           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ int		get_next_line(int fd, char **line)
 	return (0);
 }
 
+/* this fuction won't pass the NORM as it has 27 lines, but it makes more sense to me */
+/* splitting into 2 funcs just to pass the NORM was the only way around it */
+
 char	*get_extra(int fd, t_lst **head)
 {
 	t_lst	*elem;
@@ -59,22 +62,12 @@ char	*get_extra(int fd, t_lst **head)
 	}
 	else
 	{
-		begin = get_extra_else(elem);
-		if (!begin)
+		if (!(begin = ft_strdup((char *)elem->left)))
 			return (NULL);
+		free((*elem).left);
+		elem->left = NULL;
+		elem->left_size = 0;
 	}
-	return (begin);
-}
-
-char	*get_extra_else(t_lst *elem)
-{
-	char *begin;
-
-	if (!(begin = ft_strdup((char *)elem->left)))
-		return (NULL);
-	free((*elem).left);
-	elem->left = NULL;
-	elem->left_size = 0;
 	return (begin);
 }
 
